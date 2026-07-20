@@ -3,7 +3,7 @@ package com.priyanshu.roleradar.controller;
 import com.priyanshu.roleradar.entity.User;
 import com.priyanshu.roleradar.service.UserService;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -17,5 +17,10 @@ public class UserController {
     @PostMapping("/register")
     public User registerUser(@RequestBody User user) {
         return userService.registerUser(user);
+    }
+
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 }
