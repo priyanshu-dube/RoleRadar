@@ -8,4 +8,9 @@ public interface UserService {
     User registerUser(User user);
 
     List<User> getAllUsers();
+
+    User getUserById(Long id);
+
+    User updateUser (Long id, User Updateduser);
+void deleteUser(Long id);
 }
