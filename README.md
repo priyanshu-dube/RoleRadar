@@ -1,130 +1,130 @@
-# RoleRadar
+# 🚀 RoleRadar
 
-![Java](https://img.shields.io/badge/Java-17-orange)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F)
+![Java](https://img.shields.io/badge/Java-21-orange)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-4.x-6DB33F)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791)
 ![Maven](https://img.shields.io/badge/Maven-Build-C71A36)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 ![Status](https://img.shields.io/badge/Status-Active_Development-success)
 
-> **Enterprise-oriented backend infrastructure built with Java, Spring Boot, and PostgreSQL.**
+> **Enterprise-inspired backend platform built with Java, Spring Boot, and PostgreSQL.**
 
-## Backend platform for managing and mapping modern Software Engineering and SDLC roles
-
-RoleRadar is a Java Spring Boot backend platform designed to demonstrate modern backend engineering practices through secure REST APIs, layered architecture, relational database modeling, and maintainable software design.
-
-The project is being developed incrementally with a strong focus on clean architecture, security, scalability, and production-inspired engineering practices.
+RoleRadar is a backend engineering project focused on building a scalable, secure, and maintainable REST API using modern Java development practices. It demonstrates layered architecture, DTO pattern, request validation, exception handling, and database integration while following clean software engineering principles.
 
 ---
 
-## Why RoleRadar?
+# 📌 Table of Contents
 
-RoleRadar is designed as more than a CRUD application.
-
-Its purpose is to demonstrate how enterprise backend systems are structured using the Spring ecosystem while following software engineering best practices such as separation of concerns, layered architecture, repository abstraction, and incremental feature development.
-
----
-
-## Table of Contents
-
-* [Project Status](#project-status)
-* [Technology Stack](#technology-stack)
-* [Design Principles](#design-principles)
-* [System Architecture](#system-architecture)
-* [Request Flow](#request-flow)
-* [Core Engineering Features](#core-engineering-features)
-* [Project Structure](#project-structure)
-* [Getting Started](#getting-started)
-* [Development Workflow](#development-workflow)
-* [Roadmap](#roadmap)
-* [API Documentation](#api-documentation)
-* [License](#license)
+- [Project Status](#-project-status)
+- [Technology Stack](#-technology-stack)
+- [Key Features](#-key-features)
+- [Architecture](#-architecture)
+- [Project Structure](#-project-structure)
+- [REST API Endpoints](#-rest-api-endpoints)
+- [Getting Started](#-getting-started)
+- [Development Workflow](#-development-workflow)
+- [Roadmap](#-roadmap)
+- [Future Improvements](#-future-improvements)
+- [License](#-license)
 
 ---
 
-## Project Status
-
-🚧 **Active Development**
+# 🚧 Project Status
 
 ### Current Progress
 
-* ✅ User Registration API
-* ✅ Layered Architecture
-* ✅ Spring Data JPA
-* ✅ PostgreSQL Integration
-* 🔄 JWT Authentication (In Progress)
+- ✅ Complete User CRUD APIs
+- ✅ Layered Architecture
+- ✅ DTO Pattern
+- ✅ Request Validation
+- ✅ Global Exception Handling
+- ✅ Custom Exceptions
+- ✅ Spring Data JPA + Hibernate
+- ✅ PostgreSQL Integration
+- 🔄 JWT Authentication (Next Milestone)
 
 ---
 
-## Technology Stack
+# 🛠 Technology Stack
 
-| Category        | Technology                  |
-| --------------- | --------------------------- |
-| Language        | Java 17                     |
-| Framework       | Spring Boot                 |
-| Security        | Spring Security             |
-| Persistence     | Spring Data JPA + Hibernate |
-| Database        | PostgreSQL / MySQL          |
-| Build Tool      | Apache Maven                |
-| Version Control | Git                         |
-
----
-
-## Design Principles
-
-* Separation of Concerns
-* Layered Architecture
-* Clean API Design
-* Secure by Default
-* Maintainable Code
-* Incremental Development
+| Category | Technology |
+|-----------|------------|
+| Language | Java 21 |
+| Framework | Spring Boot 4 |
+| Security | Spring Security |
+| ORM | Hibernate |
+| Persistence | Spring Data JPA |
+| Validation | Jakarta Bean Validation |
+| Database | PostgreSQL |
+| Build Tool | Maven |
+| Version Control | Git & GitHub |
 
 ---
 
-## System Architecture
+# ✨ Key Features
 
-RoleRadar follows a layered architecture where every component has a single responsibility.
+## ✅ Implemented
 
-### Controller Layer
-
-* Handles HTTP requests and responses
-* Validates incoming requests
-* Delegates business operations
-
-### Service Layer
-
-* Contains business logic
-* Coordinates application workflows
-* Enforces domain rules
-
-### Repository Layer
-
-* Built using Spring Data JPA
-* Encapsulates persistence logic
-* Interacts with Hibernate
-
-### Database Layer
-
-* Supports PostgreSQL and MySQL
-* Uses normalized relational models
-* Optimized for maintainability and scalability
+- RESTful CRUD APIs
+- Layered Architecture
+- DTO Pattern
+- Entity ↔ DTO Mapping
+- Request Validation
+- Global Exception Handling
+- Custom Exceptions
+- Spring Data JPA
+- Hibernate ORM
+- PostgreSQL Integration
+- Clean API Response Design
+- Dependency Injection
+- Maven Build Management
 
 ---
 
-## Request Flow
+## 🚀 In Progress
+
+- JWT Authentication
+- Password Encryption (BCrypt)
+- Role-Based Authorization
+- Protected Endpoints
+
+---
+
+# 🏗 Architecture
+
+RoleRadar follows a clean layered architecture where each layer has a single responsibility.
+
+```text
+Client
+   │
+   ▼
+REST Controller
+   │
+   ▼
+Service Layer
+   │
+   ▼
+Repository Layer
+   │
+   ▼
+PostgreSQL Database
+```
+
+---
+
+# 🔄 Request Flow
 
 ```mermaid
 flowchart LR
 
 Client["Client"]
-Security["Spring Security Filter Chain"]
-Controller["REST Controllers"]
+Security["Spring Security"]
+Controller["REST Controller"]
 Service["Service Layer"]
-Repository["Spring Data JPA Repositories"]
-Database[("PostgreSQL / MySQL")]
+Repository["JPA Repository"]
+Database[("PostgreSQL")]
 
-Client -->|HTTP Request| Security
-Security --> Controller
+Client --> Controller
 Controller --> Service
 Service --> Repository
 Repository --> Database
@@ -132,104 +132,75 @@ Repository --> Database
 Database --> Repository
 Repository --> Service
 Service --> Controller
-Controller -->|JSON Response| Client
+Controller --> Client
 ```
 
 ---
 
-## Core Engineering Features
-
-### Implemented Features
-
-* RESTful API development
-* Layered architecture
-* Spring Data JPA integration
-* Hibernate ORM
-* Relational database persistence
-* Maven dependency management
-* Git-based version control
-
----
-
-### Planned Features
-
-#### Authentication & Authorization
-
-* JWT Authentication
-* Stateless Security
-* Role-Based Access Control (RBAC)
-
-#### API Design
-
-* DTO encapsulation
-* Request validation
-* Standardized API responses
-
-#### Error Handling
-
-* Global exception handling using `@ControllerAdvice`
-* Custom exception responses
-* Payload validation using `jakarta.validation`
-
-#### Database Optimization
-
-* Optimized entity relationships
-* Efficient join strategies
-* Lazy loading where appropriate
-* Repository abstraction
-* Elimination of N+1 query bottlenecks
-
----
-
-## Project Structure
+# 📂 Project Structure
 
 ```text
 src
 └── main
     ├── java
-    │   ├── controller
-    │   ├── service
-    │   ├── repository
-    │   ├── entity
-    │   ├── dto
-    │   ├── security
-    │   ├── exception
-    │   └── config
+    │
+    ├── controller
+    ├── service
+    │    └── impl
+    ├── repository
+    ├── entity
+    ├── dto
+    ├── mapper
+    ├── exception
+    ├── security
+    └── config
     │
     └── resources
-        ├── application.properties
-        └── static
+         ├── application.properties
+         └── static
 ```
 
 ---
 
-## Project Structure Philosophy
+# 🌐 REST API Endpoints
 
-The project follows a layered architecture where each package has a clearly defined responsibility.
-
-| Package      | Responsibility                   |
-| ------------ | -------------------------------- |
-| `controller` | HTTP request handling            |
-| `service`    | Business logic                   |
-| `repository` | Data access                      |
-| `entity`     | Persistence models               |
-| `dto`        | API request/response models      |
-| `security`   | Authentication and authorization |
-| `exception`  | Centralized error handling       |
-| `config`     | Application configuration        |
+| Method | Endpoint | Description |
+|----------|--------------------------|---------------------------|
+| POST | `/api/users/register` | Register User |
+| GET | `/api/users` | Get All Users |
+| GET | `/api/users/{id}` | Get User By ID |
+| PUT | `/api/users/{id}` | Update User |
+| DELETE | `/api/users/{id}` | Delete User |
 
 ---
 
-## Getting Started
+# 📚 Engineering Practices
 
-### Prerequisites
+- Layered Architecture
+- Repository Pattern
+- DTO Pattern
+- Separation of Concerns
+- Dependency Injection
+- Bean Validation
+- Exception Handling
+- RESTful API Design
+- Clean Code Principles
+- Incremental Development
 
-* Java 17+
-* Apache Maven 3.8+
-* PostgreSQL or MySQL
-* Git
+---
 
-### Clone the Repository
+# 🚀 Getting Started
+
+## Prerequisites
+
+- Java 21+
+- Maven
+- PostgreSQL
+- Git
+
+---
+
+## Clone Repository
 
 ```bash
 git clone https://github.com/priyanshu-dube/RoleRadar.git
@@ -237,9 +208,11 @@ git clone https://github.com/priyanshu-dube/RoleRadar.git
 cd RoleRadar
 ```
 
-### Configure
+---
 
-Update the database configuration in:
+## Configure Database
+
+Update:
 
 ```text
 src/main/resources/application.properties
@@ -247,81 +220,122 @@ src/main/resources/application.properties
 
 Configure:
 
-* Database URL
-* Username
-* Password
+- Database URL
+- Username
+- Password
 
-### Build
+---
 
-```bash
-mvn clean package
-```
-
-### Run
+## Build
 
 ```bash
-java -jar target/RoleRadar-0.0.1-SNAPSHOT.jar
+mvn clean install
 ```
 
-or
+---
+
+## Run
 
 ```bash
 mvn spring-boot:run
 ```
 
----
+or
 
-## Development Workflow
-
-RoleRadar follows an incremental feature-based Git workflow.
-
-### Branch Strategy
-
-* `main`
-* `feature/authentication`
-* `feature/user-registration`
-* `feature/security`
-* `fix/validation`
-
-### Semantic Commits
-
-```text
-feat(auth): implement JWT authentication
-feat(api): add user registration endpoint
-fix(validation): improve request validation
-refactor(service): simplify business logic
-docs: update project documentation
+```bash
+java -jar target/RoleRadar-0.0.1-SNAPSHOT.jar
 ```
 
 ---
 
-## Roadmap
+# 🌱 Development Workflow
 
-* [x] User Registration API
-* [x] Layered Architecture
-* [x] Spring Data JPA Integration
-* [x] PostgreSQL Persistence
-* [ ] JWT Authentication
-* [ ] Role-Based Access Control (RBAC)
-* [ ] DTO Layer
-* [ ] Global Exception Handling
-* [ ] Request Validation
-* [ ] Swagger / OpenAPI
-* [ ] Docker Support
-* [ ] GitHub Actions CI
-* [ ] Integration Testing
-* [ ] Redis Caching
-* [ ] Audit Logging
-* [ ] Refresh Token Support
+RoleRadar is being built incrementally using feature-based development.
+
+Example commit messages:
+
+```text
+feat(user): implement CRUD APIs
+feat(dto): introduce DTO mapping
+feat(validation): add bean validation
+feat(exception): implement global exception handling
+feat(auth): add JWT authentication
+```
 
 ---
 
-## API Documentation
+# 🛣 Roadmap
 
-Interactive API documentation using **OpenAPI / Swagger UI** will be added after the authentication module is completed.
+## ✅ Completed
+
+- [x] Layered Architecture
+- [x] CRUD APIs
+- [x] Spring Data JPA
+- [x] Hibernate ORM
+- [x] PostgreSQL Integration
+- [x] DTO Pattern
+- [x] Request Validation
+- [x] Global Exception Handling
+- [x] Custom Exceptions
 
 ---
 
-## License
+## 🚧 Upcoming
 
-This project is maintained as a backend engineering portfolio project demonstrating enterprise-oriented Java and Spring Boot development practices.
+- [ ] JWT Authentication
+- [ ] BCrypt Password Encoding
+- [ ] Login API
+- [ ] Role-Based Access Control (RBAC)
+- [ ] Swagger / OpenAPI Documentation
+- [ ] Docker Support
+- [ ] GitHub Actions CI/CD
+- [ ] Unit & Integration Testing
+- [ ] Redis Caching
+- [ ] Audit Logging
+- [ ] Refresh Token Authentication
+
+---
+
+# 🎯 Future Improvements
+
+- Resume Parsing
+- AI Skill Matching
+- Job Recommendation Engine
+- Elasticsearch Integration
+- Email Notifications
+- Admin Dashboard
+- Microservices Migration
+- Kubernetes Deployment
+
+---
+
+# 📈 Current Backend Progress
+
+```
+██████████░░░░░░░░░░ 50%
+```
+
+Completed
+
+- Spring Boot Setup
+- Database Integration
+- CRUD APIs
+- DTO Layer
+- Validation
+- Exception Handling
+
+Next Milestone
+
+🔐 JWT Authentication
+
+---
+
+# 📄 License
+
+This project is developed as a backend engineering portfolio project to demonstrate enterprise-level Java, Spring Boot, and PostgreSQL development practices.
+
+---
+
+## ⭐ If you found this project interesting, consider giving it a star!
+
+It helps support the project and motivates future development.
