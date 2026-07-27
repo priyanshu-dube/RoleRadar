@@ -1,6 +1,10 @@
 package com.priyanshu.roleradar.service.impl;
 
+import com.priyanshu.roleradar.dto.UserRequestDTO;
+import com.priyanshu.roleradar.dto.UserResponseDTO;
 import com.priyanshu.roleradar.entity.User;
+import com.priyanshu.roleradar.exception.UserNotFoundException;
+import com.priyanshu.roleradar.mapper.UserMapper;
 import com.priyanshu.roleradar.repository.UserRepository;
 import com.priyanshu.roleradar.service.UserService;
 import org.springframework.stereotype.Service;
@@ -17,45 +21,58 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User registerUser(User user) {
-        return userRepository.save(user);
+    public UserResponseDTO registerUser(UserRequestDTO requestDTO) {
+
+        User user = UserMapper.toEntity(requestDTO);
+
+        User savedUser = userRepository.save(user);
+
+        return UserMapper.toResponseDTO(savedUser);
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserResponseDTO> getAllUsers() {
+
+        return userRepository.findAll()
+                .stream()
+                .map(UserMapper::toResponseDTO)
+                .toList();
     }
 
     @Override
-    public User getUserById(Long id) {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+    public UserResponseDTO getUserById(Long id) {
+
+        User user = userRepository.findById(id)
+                .orElseThrow(() ->
+                        new UserNotFoundException("User not found with id: " + id));
+
+        return UserMapper.toResponseDTO(user);
     }
 
     @Override
-    public User updateUser(Long id, User updatedUser) {
-
-        System.out.println("Received User: " + updatedUser.getFullName());
+    public UserResponseDTO updateUser(Long id, UserRequestDTO requestDTO) {
 
         User existingUser = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+                .orElseThrow(() ->
+                        new UserNotFoundException("User not found with id: " + id));
 
-        existingUser.setFullName(updatedUser.getFullName());
-        existingUser.setEmail(updatedUser.getEmail());
-        existingUser.setPassword(updatedUser.getPassword());
-        existingUser.setRole(updatedUser.getRole());
+        existingUser.setFullName(requestDTO.getFullName());
+        existingUser.setEmail(requestDTO.getEmail());
+        existingUser.setPassword(requestDTO.getPassword());
+        existingUser.setRole(requestDTO.getRole());
 
-        return userRepository.save(existingUser);
+        User updatedUser = userRepository.save(existingUser);
 
+        return UserMapper.toResponseDTO(updatedUser);
     }
 
     @Override
     public void deleteUser(Long id) {
 
         User existingUser = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+                .orElseThrow(() ->
+                        new UserNotFoundException("User not found with id: " + id));
 
         userRepository.delete(existingUser);
     }
-
 }

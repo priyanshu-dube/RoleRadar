@@ -1,16 +1,19 @@
 package com.priyanshu.roleradar.service;
 
-import com.priyanshu.roleradar.entity.User;
+import com.priyanshu.roleradar.dto.UserRequestDTO;
+import com.priyanshu.roleradar.dto.UserResponseDTO;
+
 import java.util.List;
 
 public interface UserService {
 
-    User registerUser(User user);
+    UserResponseDTO registerUser(UserRequestDTO userRequestDTO);
 
-    List<User> getAllUsers();
+    List<UserResponseDTO> getAllUsers();
 
-    User getUserById(Long id);
+    UserResponseDTO getUserById(Long id);
 
-    User updateUser (Long id, User Updateduser);
-void deleteUser(Long id);
+    UserResponseDTO updateUser(Long id, UserRequestDTO userRequestDTO);
+
+    void deleteUser(Long id);
 }
