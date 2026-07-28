@@ -7,6 +7,7 @@ import com.priyanshu.roleradar.exception.UserNotFoundException;
 import com.priyanshu.roleradar.mapper.UserMapper;
 import com.priyanshu.roleradar.repository.UserRepository;
 import com.priyanshu.roleradar.service.UserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,15 +16,22 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository,
+                           PasswordEncoder passwordEncoder) {
+
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public UserResponseDTO registerUser(UserRequestDTO requestDTO) {
 
         User user = UserMapper.toEntity(requestDTO);
+
+        // Encrypt password before saving
+        user.setPassword(passwordEncoder.encode(requestDTO.getPassword()));
 
         User savedUser = userRepository.save(user);
 
@@ -58,7 +66,12 @@ public class UserServiceImpl implements UserService {
 
         existingUser.setFullName(requestDTO.getFullName());
         existingUser.setEmail(requestDTO.getEmail());
-        existingUser.setPassword(requestDTO.getPassword());
+
+        // Encrypt updated password
+        existingUser.setPassword(
+                passwordEncoder.encode(requestDTO.getPassword())
+        );
+
         existingUser.setRole(requestDTO.getRole());
 
         User updatedUser = userRepository.save(existingUser);
